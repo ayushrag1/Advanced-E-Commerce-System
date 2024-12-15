@@ -1,0 +1,23 @@
+{
+   "user_1": {
+      "email": "ritik@gmail.com",
+      "password": "ritik",
+      "name": "ritik",
+      "address": "noida",
+      "phone": "7033315468"
+   },
+   "user_2": {
+      "email": "gyanendra@gmail.com",
+      "password": "gyanendra",
+      "name": "gyanendra",
+      "address": "gorakhpur",
+      "phone": "6393759099"
+   },
+   "user_3": {
+      "email": "anurag@gmail.com",
+      "password": "anurag",
+      "name": "anurag",
+      "address": "greater noida",
+      "phone": "8076324002"
+   }
+}
