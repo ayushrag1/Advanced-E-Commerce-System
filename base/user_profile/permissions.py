@@ -42,6 +42,10 @@ class IsOwnerOrAdmin(BasePermission):
         Check if user has permission to access the specific object.
         Only called if has_permission() returns True.
         """
+        # Superusers have full access
+        if request.user.is_superuser:
+            return True
+
         view_user_id = view.kwargs.get('user_id')
         token_user_id = request.user.token.get('user_id')
         if token_user_id is None or view_user_id is None:

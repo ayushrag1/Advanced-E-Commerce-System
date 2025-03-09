@@ -10,19 +10,20 @@ class Category(models.Model):
     description = models.TextField()
 
     def __str__(self):
-        return f"{self.name} {self.description}"
+        return self.name
 
 
 class Product(models.Model):
     name = models.CharField(max_length=255)
     price = models.DecimalField(max_digits=10, decimal_places=2)
+    stock = models.PositiveIntegerField(null=False, default=0)
     description = models.TextField(null=True, blank=True)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name="products")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f"{self.name} : {self.category.name}"
+        return self.name
 
 
 class Order(models.Model):
@@ -31,8 +32,8 @@ class Order(models.Model):
         SHIPPED = 1, 'Shipped'
         DELIVERED = 2, 'Delivered'
 
-    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='orders')  # Link to UserProfile
-    products = models.ManyToManyField(Product, through='OrderItem')  # Many-to-many through intermediary table
+    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='orders')
+    products = models.ManyToManyField(Product, through='OrderItem')
     total_price = models.DecimalField(max_digits=10, decimal_places=2, default=Decimal('0.00'))
     status = models.IntegerField(
         choices=OrderStatus.choices,
