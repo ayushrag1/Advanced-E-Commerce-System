@@ -10,8 +10,7 @@ class UserProfileSerializer(ModelSerializer):
         model = UserProfile
         fields = (
             'user_id', 'email', 'name', 'address',
-            'phone', 'password', 'is_staff',
-            'is_active', 'date_joined'
+            'phone', 'date_joined'
         )
         read_only_fields = (
             'user_id', 'is_staff', 'is_active', 'date_joined'
